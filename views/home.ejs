@@ -77,9 +77,9 @@
 						<div class="movie-list">
 						<% for (i=0 ; i < movieList.length ; i++) { %>
 							<div class="movie">
-								<figure class="movie-poster"><img src="<%= movieList[i].img %>" alt="#"></figure>
-								<div class="movie-title"><a href="/single"><%= movieList[i].name %></a></div>
-								<p><%= movieList[i].description %></p>
+								<figure class="movie-poster"><img src="<%=poster%><%= movieList[i].poster_path %>" alt="#"></figure>
+								<div class="movie-title"><a href="/single"><%= movieList[i].title %></a></div>
+								<p><%= movieList[i].overview %></p>
 							</div>
 							<% } %>
 						</div> <!-- .movie-list -->
