@@ -58,14 +58,34 @@ request("https://api.themoviedb.org/3/movie/popular?api_key=54c7f44c2377f1dcb4e6
   
      }
   
-  res.render('home', {movieList : movieList, poster : poster, homeHeader : true, myMoviesHeader : false, contactHeader : false, loginHeader : false, signUpHeader : false});
+  res.render('home', {titre : 'Last releases', movieList : movieList, poster : poster, homeHeader : true, myMoviesHeader : false, contactHeader : false, loginHeader : false, signUpHeader : false});
 
   })
 
 });
 
+app.get('/research', function (req, res) {
+
+if (req.query.research != '') {
+
+request("https://api.themoviedb.org/3/search/movie?api_key=54c7f44c2377f1dcb4e6944f8049a6cc&language=fr&query="+req.query.research+"&page=1&include_adult=false", function(error, response, body) {
+  body = JSON.parse(body);
+  movieList=[];
+  for (var i = 0; i < body.results.length; i++) {
+  
+  movieList.push({title : body.results[i].title, poster_path : body.results[i].poster_path, overview : body.results[i].overview});
+  
+     }
+  
+  res.render('home', {titre : 'Results', movieList : movieList, poster : poster, homeHeader : true, myMoviesHeader : false, contactHeader : false, loginHeader : false, signUpHeader : false});
+
+  })
+ }
+
+});
+
 app.get('/contact', function (req, res) {
-    res.render('contact', {homeHeader : false, myMoviesHeader : false, contactHeader : true, loginHeader : false, signUpHeader : false});
+    res.render('contact', {titre : 'Last releases', homeHeader : false, myMoviesHeader : false, contactHeader : true, loginHeader : false, signUpHeader : false});
 });
 
 app.get('/login', function (req, res) {
@@ -81,11 +101,11 @@ app.get('/login', function (req, res) {
      
      } else {
 
-    res.render('login', {error : 'Veuillez rentrer tous les champs', homeHeader : false, myMoviesHeader : false, contactHeader : false, loginHeader : true, signUpHeader : false});
+    res.render('login', {error : 'Veuillez rentrer tous les champs', titre : 'Last releases', homeHeader : false, myMoviesHeader : false, contactHeader : false, loginHeader : true, signUpHeader : false});
     }  
  }else {
 
-    res.render('login', {error : null, homeHeader : false, myMoviesHeader : false, contactHeader : false, loginHeader : true, signUpHeader : false});
+    res.render('login', {error : null, titre : 'Last releases', homeHeader : false, myMoviesHeader : false, contactHeader : false, loginHeader : true, signUpHeader : false});
   }
 });
 
@@ -110,11 +130,11 @@ app.get('/signup', function (req, res) {
     })
    }
    else {
-    res.render('signup', {error : 'Veuillez rentrer tous les champs', homeHeader : false, myMoviesHeader : false, contactHeader : false, loginHeader : false, signUpHeader : true})
+    res.render('signup', {error : 'Veuillez rentrer tous les champs', titre : 'Last releases', homeHeader : false, myMoviesHeader : false, contactHeader : false, loginHeader : false, signUpHeader : true})
    }
  }
    else{
-    res.render('signup', {error : null, homeHeader : false, myMoviesHeader : false, contactHeader : false, loginHeader : false, signUpHeader : true})
+    res.render('signup', {error : null, titre : 'Last releases', homeHeader : false, myMoviesHeader : false, contactHeader : false, loginHeader : false, signUpHeader : true})
    }
   });
 
@@ -126,7 +146,7 @@ app.get('/review', function (req, res) {
     
     myMovieModel.find(function (err, myMovieLists) {
     myMovieList=myMovieLists;
-    res.render('review', {movieList : movieList, poster : poster, myMovieList : myMovieList, homeHeader : false, myMoviesHeader : true, contactHeader : false, loginHeader : false, signUpHeader : false});
+    res.render('review', {movieList : movieList, titre : 'Last releases', poster : poster, myMovieList : myMovieList, homeHeader : false, myMoviesHeader : true, contactHeader : false, loginHeader : false, signUpHeader : false});
 
        });
     }
@@ -152,7 +172,7 @@ app.get('/review', function (req, res) {
     
     myMovieModel.find(function (err, myMovieLists) {
     myMovieList=myMovieLists;
-    res.render('review', {movieList : movieList, poster : poster, myMovieList : myMovieList, homeHeader : false, myMoviesHeader : true, contactHeader : false, loginHeader : false, signUpHeader : false});
+    res.render('review', {movieList : movieList, titre : 'Last releases', poster : poster, myMovieList : myMovieList, homeHeader : false, myMoviesHeader : true, contactHeader : false, loginHeader : false, signUpHeader : false});
 
         });
        })
@@ -162,7 +182,7 @@ app.get('/review', function (req, res) {
         console.log("existe déjà !");
         myMovieModel.find(function (err, myMovieLists) {
         myMovieList=myMovieLists;
-        res.render('review', {movieList : movieList, poster : poster, myMovieList : myMovieList, homeHeader : false, myMoviesHeader : true, contactHeader : false, loginHeader : false, signUpHeader : false});
+        res.render('review', {movieList : movieList, titre : 'Last releases', poster : poster, myMovieList : myMovieList, homeHeader : false, myMoviesHeader : true, contactHeader : false, loginHeader : false, signUpHeader : false});
 
        });
         
@@ -176,7 +196,7 @@ app.get('/review', function (req, res) {
 app.get('/single', function (req, res) {
 console.log(req.query.id);
   var id= req.query.id;
-    res.render('single', {movieList : movieList, poster : poster, id: id});
+    res.render('single', {titre : 'Last releases', movieList : movieList, poster : poster, id: id});
 });
 
 app.listen(8080, function () {
