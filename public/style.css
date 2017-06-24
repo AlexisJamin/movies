@@ -25,6 +25,7 @@ canvas,
 video {
   display: inline-block; }
 
+
 audio:not([controls]) {
   display: none;
   height: 0; }
@@ -1526,6 +1527,9 @@ ul.arrow {
   border-radius: 5px;
   padding: 30px; }
 
+.main-content {
+  min-height: 100vw;
+}
 .section-title {
   font-size: 30px;
   font-size: 2em;

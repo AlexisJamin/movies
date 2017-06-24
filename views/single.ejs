@@ -26,33 +26,7 @@
 		
 
 		<div id="site-content">
-			<header class="site-header">
-				<div class="container">
-					<a href="home.html" id="branding">
-						<img src="images/logo.png" alt="" class="logo">
-						<div class="logo-copy">
-							<h1 class="site-title">Moviz</h1>
-							<small class="site-description">Manage your best movies</small>
-						</div>
-					</a> <!-- #branding -->
-
-					<div class="main-navigation">
-						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item"><a href="home.html">Last release</a></li>
-							<li class="menu-item current-menu-item"><a href="review.html">My movies</a></li>
-							<li class="menu-item"><a href="contact.html">Contact</a></li>
-						</ul> <!-- .menu -->
-
-						<form action="#" class="search-form">
-							<input type="text" placeholder="Search...">
-							<button><i class="fa fa-search"></i></button>
-						</form>
-					</div> <!-- .main-navigation -->
-
-					<div class="mobile-navigation"></div>
-				</div>
-			</header>
+			<%- include("header"); %>
 			<main class="main-content">
 				<div class="container">
 					<div class="page">
@@ -60,14 +34,12 @@
 						<div class="content">
 							<div class="row">
 								<div class="col-md-6">
-									<figure class="movie-poster"><img src="dummy/single-image.jpg" alt="#"></figure>
+									<figure class="movie-poster"><img src="<%=poster%><%= movieList[id].poster_path %>" alt="#"></figure>
 								</div>
 								<div class="col-md-6">
-									<h2 class="movie-title">The Croods</h2>
+									<h2 class="movie-title"><%= movieList[id].title %></h2>
 									<div class="movie-summary">
-										<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-
-										<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit sed.</p>
+										<p><%= movieList[id].overview %> </p>
 									</div>
 									<ul class="movie-meta">
 										<li><strong>Rating:</strong> 

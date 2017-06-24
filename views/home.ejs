@@ -13,6 +13,8 @@
 
 		<!-- Loading main css file -->
 		<link rel="stylesheet" href="style.css">
+
+		<script src="https://use.fontawesome.com/ab6b468606.js"></script>
 		
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
@@ -26,36 +28,14 @@
 		
 
 		<div id="site-content">
-			<header class="site-header">
-				<div class="container">
-					<a href="/home" id="branding">
-						<img src="images/logo.png" alt="" class="logo">
-						<div class="logo-copy">
-							<h1 class="site-title">Moviz</h1>
-							<small class="site-description">Manage your best movies</small>
-						</div>
-					</a> <!-- #branding -->
 
-					<div class="main-navigation">
-						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item  current-menu-item"><a href="/home">Last releases</a></li>
-							<li class="menu-item"><a href="/review">My movies</a></li>
-							<li class="menu-item"><a href="/contact">Contact</a></li>
-						</ul> <!-- .menu -->
+		<%- include("header"); %>
+			
 
-						<form action="#" class="search-form">
-							<input type="text" placeholder="Search...">
-							<button><i class="fa fa-search"></i></button>
-						</form>
-					</div> <!-- .main-navigation -->
-
-					<div class="mobile-navigation"></div>
-				</div>
-			</header>
 			<main class="main-content">
 				<div class="container">
 					<div class="page">
+					
 			
             
             <!--
@@ -76,9 +56,14 @@
             -->
 						<div class="movie-list">
 						<% for (i=0 ; i < movieList.length ; i++) { %>
+
+
 							<div class="movie">
-								<figure class="movie-poster"><img src="<%=poster%><%= movieList[i].poster_path %>" alt="#"></figure>
-								<div class="movie-title"><a href="/single"><%= movieList[i].title %></a></div>
+								<figure class="movie-poster"><a href="/single?id=<%=i%>"><img src="<%=poster%><%= movieList[i].poster_path %>" alt="#"></a>
+								</figure>
+								<div class="movie-title"><a href="/review?id=<%=i%>"><%= movieList[i].title %>
+								<span class="fa fa-heart-o" aria-hidden="true"></span></a>
+								</div>
 								<p><%= movieList[i].overview %></p>
 							</div>
 							<% } %>

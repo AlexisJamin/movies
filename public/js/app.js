@@ -2,6 +2,16 @@
 	
 	$(document).ready(function(){
 
+      
+        //$( ".movie-title" ).click(function(e) {
+        	//e.preventDefault();
+            //console.log($(".movie-title").attr("value"));
+        	//var id = 1;
+        	//$.get( "/single?id="+id, function( data ) {
+               
+              //});
+         //});
+
 		// Cloning main navigation for mobile menu
 		$(".mobile-navigation").append($(".main-navigation .menu").clone());
 
@@ -36,6 +46,7 @@
 			"autofit" );
 	    	
 	    }
+
 	});
 
 	$(window).load(function(){
